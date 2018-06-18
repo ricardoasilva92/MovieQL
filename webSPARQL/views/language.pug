@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	
+	.column.side
+		p  
+	.column.middle
+		if dataLang
+			h2
+				center=  dataLang.name + " Titles"
+	
+		table.table
+			tbody
+			if dataLang.isLanguageOf.length > 0
+				tr.bg-success
+					td 
+						b Movies
+					td
+						each tit in dataLang.isLanguageOf
+							p
+								a(href="http://localhost:3000/title/"+ tit.id)= tit.val
+			

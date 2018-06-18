@@ -1,0 +1,47 @@
+extends layout
+
+block content
+
+	.column.side
+		p
+
+	.column.middle
+		h3
+			center Top 10 movies 2018
+		.bd-example
+			#carouselExampleCaptions.carousel.slide.carousel-fade(data-ride='carousel')
+				ol.carousel-indicators
+					li.active(data-target='#carouselExampleCaptions', data-slide-to='0')
+					li(data-target='#carouselExampleCaptions', data-slide-to='1')
+				if top10
+					.carousel-inner(role='listbox')
+						.carousel-item.active
+							center
+									h3 Black Panther
+									p Rating:  7.8
+							img.d-block.w-50.img-fluid(data-src='holder.js/900x300?auto=yes&bg=777&fg=555&text=First slide', alt='First slide [900x300]', src='https://ia.media-imdb.com/images/M/MV5BMTg1MTY2MjYzNV5BMl5BanBnXkFtZTgwMTc4NTMwNDI@._V1_SX300.jpg', data-holder-rendered='true')
+							.carousel-caption.d-none.d-md-block
+
+						each val, index in top10
+							
+							.carousel-item
+								center
+									h3=index
+									p= "Rating: " + val.rating
+								img.d-block.w-50.img-fluid(data-src='holder.js/900x300?auto=yes&bg=666&fg=444&text=Second slide', alt='Second slide [900x300]', src=val.poster, data-holder-rendered='true')
+								.carousel-caption.d-none.d-md-block
+								
+				a.carousel-control-prev(href='#carouselExampleCaptions', role='button', data-slide='prev')
+					span.carousel-control-prev-icon(aria-hidden='true')
+					span.sr-only Previous
+				a.carousel-control-next(href='#carouselExampleCaptions', role='button', data-slide='next')
+					span.carousel-control-next-icon(aria-hidden='true')
+					span.sr-only NexT
+
+				p
+				p
+				p
+
+
+
+

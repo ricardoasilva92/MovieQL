@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	
+	.column.side
+		p  
+	.column.middle
+		if dataCountry
+			h2
+				center= dataCountry.name
+	
+		table.table
+			tbody
+			if dataCountry.isCountryOf.length > 0
+				tr.bg-success
+					td 
+						b Movies
+					td
+						each tit in dataCountry.isCountryOf
+							p
+								a(href="http://localhost:3000/title/"+ tit.id)= tit.val
+			

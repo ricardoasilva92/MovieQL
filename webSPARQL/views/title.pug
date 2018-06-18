@@ -1,0 +1,126 @@
+extends layout
+
+block content
+	
+	.column.side
+		p  
+		if dataTitle
+			.Fixed
+				img(src=dataTitle.poster, alt='Imagem Inexistente')
+	.column.middle
+		if dataTitle
+			h1
+				center=dataTitle.name
+	
+		table.table
+			tbody
+			if dataTitle.plot
+				tr.bg-info
+					td 
+						b Plot
+					td=dataTitle.plot
+			if dataTitle.premiereYear
+				tr.bg-warning
+					td 
+						b Premiere Year
+					td=dataTitle.premiereYear			
+			if dataTitle.directors.length > 0
+				tr.bg-success
+					td 
+						b Directors
+					td
+						each dir in dataTitle.directors
+							p
+								a(href="/person/"+ dir.id)= dir.val
+			if dataTitle.writers.length > 0
+				tr.bg-success
+					td 
+						b Writers
+					td
+						each wrtr in dataTitle.writers
+							p
+								a(href="/person/"+ wrtr.id)= wrtr.val		
+			if dataTitle.actors.length > 0
+				tr.bg-success
+					td 
+						b Actors
+					td
+						each act in dataTitle.actors
+							p
+								a(href="/person/"+ act.id)= act.val
+			if dataTitle.studio.length > 0
+				tr.bg-danger
+					td 
+						b Studio
+					td
+						each std in dataTitle.studio
+							p
+								a(href="/studio/"+ std.id)= std.val
+			if dataTitle.mpaa_rated.length > 0
+				tr.bg-info
+					td 
+						b Rate MPAA
+					td
+						each mpaa in dataTitle.mpaa_rated
+							p
+								a(href="/mpaa/"+ mpaa.id)= mpaa.val
+			if dataTitle.genres.length > 0
+				tr.bg-warning
+					td 
+						b Genres
+					td
+						each gnr in dataTitle.genres
+							p
+								a(href="/genre/"+ gnr.id)= gnr.val
+			if dataTitle.languages.length > 0
+				tr.bg-success
+					td 
+						b Languages
+					td
+						each lang in dataTitle.languages
+							p
+								a(href="/language/"+ lang.id)= lang.val
+			if dataTitle.countries.length > 0
+				tr.bg-success
+					td 
+						b Production Location
+					td
+						each cntr in dataTitle.countries
+							p
+								a(href="/country/"+ cntr.id)= cntr.val
+			if dataTitle.numVotes
+				tr.bg-danger
+					td 
+						b Number of Votes
+					td=dataTitle.numVotes
+			if dataTitle.rating_IMD
+				tr.bg-danger
+					td 
+						b Rate IMD
+					td=dataTitle.rating_IMD
+			if dataTitle.rating_META
+				tr.bg-danger
+					td 
+						b Rate META-CRITIC
+					td=dataTitle.rating_META
+			if dataTitle.rating_RT
+				tr.bg-danger
+					td 
+						b Rate Rotten Tomatoes
+					td=dataTitle.rating_RT
+			if dataTitle.boxOffice
+				tr.bg-info
+					td 
+						b Box Office
+					td=dataTitle.boxOffice
+			if dataTitle.runTime
+				tr.bg-warning
+					td 
+						b Runtime (min)
+					td=dataTitle.runTime
+			if dataTitle.website
+				tr.bg-warning
+					td 
+						b Website
+					td
+						a(href=dataTitle.website)= dataTitle.website

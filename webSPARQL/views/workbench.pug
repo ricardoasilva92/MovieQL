@@ -1,0 +1,38 @@
+extends layout
+
+block content
+	script(src="/javascripts/jquery-3.3.1.min.js")
+	script(src="/javascripts/pedidos.js")
+	.row
+		.col-sm-4
+			.container.border.bg-light
+				header.container
+					h2 Input:
+			.container.border
+				small.form-text.text-muted 
+					p PREFIX owl: < http://www.w3.org/2002/07/owl#>
+					p PREFIX cin: < http://miei.di.uminho.pt/prc2018/hollywood#>
+				textarea#intext.w3-input(rows='10', cols='50', placeholder='Input SPARQL query here', name='intext')
+				.w3-bar
+					#proc.btn.btn-primary Submit
+					.divider
+			br
+			p 
+			h3
+				b Query examples:
+			#nova0.btn.btn-danger List all classes
+			br
+			br
+			#nova1.btn.btn-danger Top 10 most lucrative (domestic) movies 
+			br
+			br
+			#nova2.btn.btn-danger Who directed most movies (15 top)
+			br
+			br
+			#nova3.btn.btn-danger Top 10 profitable actors			
+		.col-sm-8
+			.container.border.bg-light
+				header.w3-container
+					h4 Result:
+			#resultado.w3-code.w3-border(style='overflow-x: scroll')
+			#limpa.btn.btn-primary Clear

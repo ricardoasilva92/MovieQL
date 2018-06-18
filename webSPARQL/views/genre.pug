@@ -1,0 +1,23 @@
+extends layout
+
+block content
+	
+	.column.side
+		p
+	.column.middle
+		if dataGenre
+			h2 
+				center=dataGenre.name + " movies"
+	
+		table.table
+			tbody
+			
+			if dataGenre.isGenreOf.length > 0
+				tr.bg-success
+					td 
+						b Movies
+					td
+						each tit in dataGenre.isGenreOf
+							p
+								a(href="http://localhost:3000/title/"+ tit.id)= tit.val
+			

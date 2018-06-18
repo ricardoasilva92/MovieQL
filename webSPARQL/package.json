@@ -1,0 +1,21 @@
+{
+  "name": "websparql",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "body-parser": "~1.18.2",
+    "bootstrap": "^4.1.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "~4.15.5",
+    "jade": "~1.11.0",
+    "morgan": "~1.9.0",
+    "nodemon": "^1.17.4",
+    "pug": "^2.0.3",
+    "serve-favicon": "~2.4.5",
+    "sparql-client-2": "^0.6.2"
+  }
+}

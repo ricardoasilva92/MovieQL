@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	
+	.column.side
+		p  
+	.column.middle
+		if dataMpaa
+			h2
+				center=dataMpaa.name
+	
+		table.table
+			tbody
+			if dataMpaa.mpaa_rateOf.length > 0
+				tr.bg-success
+					td 
+						b Movies
+					td
+						each tit in dataMpaa.mpaa_rateOf
+							p
+								a(href="http://localhost:3000/title/"+ tit.id)= tit.val
+			

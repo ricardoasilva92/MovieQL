@@ -1,0 +1,60 @@
+extends layout
+
+block content
+	
+	.column.side
+		p
+	.column.middle
+		if dataPerson
+			h2 
+				center=dataPerson.name
+	
+		table.table
+			tbody
+			if dataPerson.birthYear
+				tr.bg-info
+					td 
+						b Birth Year
+					td=dataPerson.birthYear
+			if dataPerson.deathYear
+				tr.bg-danger
+					td 
+						b Death Year
+					td=dataPerson.deathYear
+			if dataPerson.sex
+				tr.bg-warning
+					td 
+						b Sex
+					td=dataPerson.sex			
+			if dataPerson.knownFor.length > 0
+				tr.bg-success
+					td 
+						b Known for
+					td
+						each tit in dataPerson.knownFor
+							p
+								a(href="http://localhost:3000/title/"+ tit.id)= tit.val
+			if dataPerson.isActorIn.length > 0
+				tr.bg-success
+					td 
+						b Is actor in
+					td
+						each tit in dataPerson.isActorIn
+							p
+								a(href="http://localhost:3000/title/"+ tit.id)= tit.val		
+			if dataPerson.isWriterOf.length > 0
+				tr.bg-success
+					td 
+						b Writer of
+					td
+						each tit in dataPerson.isWriterOf
+							p
+								a(href="http://localhost:3000/title/"+ tit.id)= tit.val
+			if dataPerson.isDirectorOf.length > 0
+				tr.bg-danger
+					td 
+						b Director Of
+					td
+						each tit in dataPerson.isDirectorOf
+							p
+								a(href="http://localhost:3000/title/"+ tit.id)= tit.val

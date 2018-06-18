@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	
+	.column.side
+		p  
+	.column.middle
+		if dataStudio
+			h2
+				center=dataStudio.name
+	
+		table.table
+			tbody
+			if dataStudio.studioOf.length > 0
+				tr.bg-success
+					td 
+						b Movies
+					td
+						each tit in dataStudio.studioOf
+							p
+								a(href="http://localhost:3000/title/"+ tit.id)= tit.val
+			

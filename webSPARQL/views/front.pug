@@ -1,0 +1,33 @@
+doctype html
+html
+	head
+		meta(charset='UTF-8')
+		meta(http-equiv='X-UA-Compatible', content='IE=edge')
+		meta(name='viewport', content='width=device-width, initial-scale=1')
+
+		link(rel='stylesheet', type='text/css', href='/stylesheets/normalize.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/demo.css')
+		link(rel='stylesheet', type='text/css', href='/stylesheets/component.css')
+		
+		script(src='https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js')
+
+		//if IE
+			script(src='http://html5shiv.googlecode.com/svn/trunk/html5.js')
+	body
+		.container.demo-1
+			.content
+				#large-header.large-header
+					canvas#demo-canvas
+					h1.main-title
+						| MovieQL
+						br
+
+						a.btn.btn-danger(href='/workbench', role='button') Querying with SparQL
+						.divider
+						a.btn.btn-primary(href='/explore', role='button') Explore clicking
+			// Related demos
+		// /container
+		script(src='javascripts/TweenLite.min.js')
+		script(src='javascripts/EasePack.min.js')
+		script(src='javascripts/rAF.js')
+		script(src='javascripts/demo-1.js')

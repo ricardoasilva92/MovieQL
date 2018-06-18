@@ -1,0 +1,27 @@
+{
+  "name": "promise-nodeify",
+  "description": "Call a Node-style callback with the resolution value or rejection cause of a Promise without the common pitfalls.",
+  "main": "dist/promise-nodeify.js",
+  "authors": [
+    "Kevin Locke <kevin@kevinlocke.name>"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "callback",
+    "nodeify",
+    "promise"
+  ],
+  "homepage": "https://github.com/kevinoid/promise-nodeify",
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
