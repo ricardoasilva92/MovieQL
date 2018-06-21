@@ -74,9 +74,17 @@ Explore information about any movie
 
 
 
+# Acknowledgments
 
+[Front Page] design from Rachel Smith
+
+[WebSPARQL] José Carlos Ramalho
 
 
 
 [NodeJs]: <https://nodejs.org/en/>
 [GraphDB]: <http://graphdb.ontotext.com> 
+
+[Front Page]:<https://tympanus.net/codrops/2014/09/23/animated-background-headers/>
+
+[WebSPARQL]: <https://github.com/jcramalho/WebSPARQL>
