@@ -1,5 +1,0 @@
-coverage/
-doc/
-dist/
-node_modules/
-test-lib/await-global-exception.js
