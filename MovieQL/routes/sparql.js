@@ -4,8 +4,8 @@ var router = express.Router();
 var SparqlClient = require('sparql-client-2');
 var SPARQL =  SparqlClient.SPARQL
 
-var endpoint = 'http://192.168.1.6:7200/repositories/cinema'
-var myupdateEndpoint = 'http://192.168.1.6:7200/repositories/cinema/statements'
+var endpoint = 'http://192.168.56.1:7200/repositories/movies_imdb'
+var myupdateEndpoint = 'http://192.168.56.1:7200/repositories/movies_imdb/statements'
 
 var url = require('url')
 
