@@ -1,0 +1,15 @@
+#1_____________LISTAR TODAS AS CLASSES
+select ?s where {
+    ?s a owl:Class .
+}
+
+#2_____________TOP 20 FILMES MAIS RENTAVEIS (Domestic)____________
+select ?nome ?money where {
+    ?s a cin:Movie .
+    ?s cin:boxOffice ?money .
+    ?s cin:name ?nome
+}
+order by desc(?money)
+limit 20
+
+#3

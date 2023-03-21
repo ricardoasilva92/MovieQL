@@ -5,6 +5,11 @@ You have two ways to explore, querying in **SPARQL**, or explore interactively u
 
 ## 1) Ontology
 
+### **Files**
+**Ontology full**: [Ontology/cinema.owl](Ontology/cinema.owl)
+
+**Ontology wihtout humans (only movies)**: [Ontology/cinema_withoutHumans.owl](Ontology/cinema_withoutHumans.owl)
+
 #### 1.1) Ontology - Specifications
 
 - **Topic**: Movies
@@ -64,14 +69,11 @@ Explore information about any movie
 
 
 ## Installing
-
 - Create new repository in graphDB
 - import the ontology on this repository to the created GraphDb repository
 - copy its repository URL to MovieQL>routes>sparql.js endpoint variable
 - run nodejs server (npm start)
 - go to localhost:3000
-
-
 
 
 # Acknowledgments

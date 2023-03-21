@@ -1,39 +1,36 @@
 #!/usr/bin/python3
 
 import fileinput, csv, pprint, json, time, urllib.request
+import unidecode as ud #pip install unidecode
 
 start_time = time.time()
 pp = pprint.PrettyPrinter(indent=4)
-import unidecode as ud
 
-"""
 #_______________leitura dos ficheiros tsv datasets oficiais de imdb.com_______________________
 print("ler ficheiros....... %s"  % (time.time() - start_time))
 #1[titleRatings] ficheiro ratings
-titleRatings = open('dados/title_ratings.tsv')
+titleRatings = open('imdb_data/title.ratings.tsv/data.tsv')
 readerRatings = csv.DictReader(titleRatings,delimiter='\t')
 
 #2[titleBasic] ficheiro de informação básica
-titleBasic = open('dados/title_basics.tsv',encoding="utf8")
+titleBasic = open('imdb_data/title.basics.tsv/data.tsv',encoding="utf8")
 readerBasic = csv.DictReader(titleBasic,delimiter='\t')
 
 #3[titlePrincipals] ficheiro com informação relativa à equipa princial de um dado filme, atores, realizadores e escritores
-titlePrincipal = open('dados/title_principals.tsv',encoding="utf8")
+titlePrincipal = open('imdb_data/title.principals.tsv/data.tsv',encoding="utf8")
 readerPrincipal = csv.DictReader(titlePrincipal,delimiter='\t')
 
 #4[titleCrew] ficheiro com realizadores e escritores
-titleCrew = open('dados/title_crew.tsv',encoding="utf8")
+titleCrew = open('imdb_data/title.crew.tsv/data.tsv',encoding="utf8")
 readerCrew = csv.DictReader(titleCrew,delimiter='\t')
 
-
 #6[names] ficheiro com informação de cada pessoa, atores, realizadores, escritores, etc
-humans = open('dados/name_basics.tsv',encoding="utf8")
+humans = open('imdb_data/name.basics.tsv/data.tsv',encoding="utf8")
 readerHumans = csv.DictReader(humans,delimiter='\t')
 
 print("ficheiros lidos %s"  % (time.time() - start_time))
 #0 lista auxiliar com o id de todas as pessoas, actores,realizadores, escritores
 humanListAux = set()
-
 
 #__________________________criação dos dicionarios____________________________________
 #1[titleRatings] titulos com mais de 10.000 votos (mas tem titulos que nao sao filmes)
@@ -68,7 +65,6 @@ for row in readerCrew:
 	crew_dict[row['tconst']]={'directors' : row['directors'].split(","), 'writers' : row['writers'].split(",")}
 print("crew_dict criado | %s"  % (time.time() - start_time))
 
-
 #UNIAO de basic_dict ao ratings_dict.  
 # obter dicionario onde os titulos 'movies' com mais de 10000 votos tenham os campos 'genres','primaryTitle' e 'startYear'
 for key,val in basic_dict.items(): #percorre-se o basic_dict
@@ -78,7 +74,6 @@ for key,val in basic_dict.items(): #percorre-se o basic_dict
 		ratings_dict[key]['startYear'] = basic_dict[key]['startYear']
 		ratings_dict[key]['runtimeMinutes'] = basic_dict[key]['runtimeMinutes']
 print("uniao de basic_dict com ratings_dict criado | %s"  % (time.time() - start_time))				
-
 
 #limpar do dicionario os titulos que tem acima de 10.000 votos, mas não são movies. Sabemos que os 'movies' tem 6 campos
 for key in ratings_dict.copy():
@@ -103,7 +98,6 @@ for key in ratings_dict.copy():
 				humanListAux.add(wrtr)
 print("limpado ratings_dict, adicionado os atores, realizadores e escritores | %s"  % (time.time() - start_time) )
 
-
 #6[humans] dicionaro com key -> idPessoa, value -> 'primaryName':string, 'birthYear':string, 'deathYear':string, 'primaryProfession':[string], 'knownForTitles':[string]
 humans_dict = {}
 for row in readerHumans:
@@ -119,32 +113,27 @@ for key in humans_dict:
 			humans_dict[key]['knownForTitles'].remove(tit)
 print("removido do campo 'knownForTitle' os titulos que nao estao no ratings_dict | %s"  % (time.time() - start_time))
 
-
-
 #________escrita e criação de ficheiro movies.json que contem todos os movies com os campos acima, apenas os do imdb________
-json = json.dumps(ratings_dict)
+movies_json = json.dumps(ratings_dict)
 f = open("movies.json","w")
-f.write(json)
+f.write(movies_json)
 f.close()
 
 print("ficheiro movie.json criado | %s"  % (time.time() - start_time))
 
 
-_______ecrita e criação de ficheiro humans.json que contem a informação de todos as pessoas listadas em movies.json_____________
-json = json.dumps(humans_dict)
+#_______ecrita e criação de ficheiro humans.json que contem a informação de todos as pessoas listadas em movies.json_____________
+human_json = json.dumps(humans_dict)
 f = open("humans.json","w")
-f.write(json)
+f.write(human_json)
 f.close()
-"""
-
 
 
 """_______________________Download de todos os 'movies' de omdbapi.com e po-los em api_movies.json_____________________"""
-"""
-api_dict = {}
 
-movies = json.load(open('dados/movies.json'))
-api_movies = json.load(open('dados/api_movies.json'))
+api_dict = {}
+movies = json.load(open('movies.json'))
+api_movies = json.load(open('api_movies.json'))
 
 api_aux = set() #contem os ids dos filmes já sacadas
 for key in api_movies:
@@ -186,21 +175,20 @@ for key in movies:
 
 if bool(api_dict):
 	api_movies.update(api_dict)
-	with open('dados/api_movies.json', 'w') as f:
+	with open('imdb_data/api_movies.json', 'w') as f:
 		json.dump(api_movies, f)
 else:
 	print("acabou")
 
-"""
 
 
 
 """______________________ADICIONAR CAMPOS QUE FALTAM AO MOVIES.JSON (ir busca-los ao api_movies.json) _______________________________"""
 
 """
-api_movies = json.load(open('dados/api_movies.json'))
-movies = json.load(open('dados/movies.json'))
-humans = json.load(open('dados/humans.json'))
+api_movies = json.load(open('imdb_data/api_movies.json'))
+movies = json.load(open('imdb_data/movies.json'))
+humans = json.load(open('imdb_data/humans.json'))
 
 def boxOfficeToFloat(a):
 	if a!='N/A':
@@ -258,7 +246,7 @@ f.close()"""
 
 #____tirar os espaços em branco no incio e no fim dos campos language, country (também fiz para o extra)____________
 """
-movies = json.load(open('dados/movies.json'))
+movies = json.load(open('imdb_data/movies.json'))
 for title in movies:
 	x = movies[title].get("language",None)
 	if x!=None:
@@ -281,13 +269,13 @@ f.close()
 
 #_______________________NOVO movies.json com ids em vez de strings para os campos Genre, Country, Corporation, Language, mpaaRATE_______________________
 """
-movies = json.load(open('dados/movies_ids.json'))
+movies = json.load(open('imdb_data/movies_ids.json'))
 
-genres = json.load(open('dados/genres.json'))
-corporations = json.load(open('dados/corporations.json'))
-countries = json.load(open('dados/country.json'))
-languages = json.load(open('dados/languages.json'))
-mpaa_rate = json.load(open('dados/mpaa_rate.json'))
+genres = json.load(open('imdb_data/genres.json'))
+corporations = json.load(open('imdb_data/corporations.json'))
+countries = json.load(open('imdb_data/country.json'))
+languages = json.load(open('imdb_data/languages.json'))
+mpaa_rate = json.load(open('imdb_data/mpaa_rate.json'))
 
 def getKey(dic,str):
 	for key in dic:
@@ -334,7 +322,7 @@ json = json.dumps(movies)
 f = open("movies.json","w")
 f.write(json)
 f.close()
-"""
+
 
 #_____converter valor dos diferentes ratings para decimal_______________ (feito)
 
@@ -396,7 +384,7 @@ f.close()
 
 
 dictP = {}
-movies = json.load(open('dados/movies_ids.json'))
+movies = json.load(open('imdb_data/movies_ids.json'))
 for key in movies:
 	dictP[(movies[key]["primaryTitle"])] = ""
 
@@ -404,6 +392,7 @@ json = json.dumps(dictP)
 f = open("movies.json","w",)
 f.write(json)
 f.close()
+"""
 
 
 	
