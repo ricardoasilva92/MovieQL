@@ -4,6 +4,8 @@ select ?s where {
 }
 
 #2_____________TOP 20 FILMES MAIS RENTAVEIS (Domestic)____________
+PREFIX cin: <http://miei.di.uminho.pt/prc2018/hollywood#>
+
 select ?nome ?money where {
     ?s a cin:Movie .
     ?s cin:boxOffice ?money .

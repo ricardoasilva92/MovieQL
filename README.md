@@ -69,19 +69,61 @@ Explore information about any movie
 
 
 ## Installing
-- Create new repository in graphDB
-- import the ontology on this repository to the created GraphDb repository
-- copy its repository URL to MovieQL>routes>sparql.js endpoint variable
-- run nodejs server (npm start)
-- go to localhost:3000
+1. Configure and Launch DB
+2. Start nodejs server
 
+# 1. Configuring and Launch DB
+### Install GraphDb desktop
+
+1. Create free Account and request free version -> [link](https://www.ontotext.com/)
+2. Install and Launch (the GraphDb interface should be available at http://localhost:7200)
+
+### Create the repository
+1. Create GraphDB repository (leave default configs)
+2. Select your Repository
+3. Import and select the `Ontology/cinema.owl` file
+4. Select on left the `SPARQL` option (or http://localhost:7200/sparql) and try the following query
+
+```
+select ?s where {
+    ?s a owl:Class .
+}
+```
+you should get something like: These are all the classes
+```
+1 hollywood:Title
+2 hollywood:Country
+3 hollywood:Studio
+4 hollywood:Actor
+5 hollywood:Director
+6 hollywood:Genre
+7 hollywood:Language
+8 hollywood:Writer
+9 hollywood:Person
+10 hollywood:MPAA_Rating
+11 hollywood:Composer
+12 hollywood:Movie
+```
+
+### Get the repository Url
+Go to Setup > Repositories (or http://localhost:7200/repository) and copy the repository URL (anchor icon)
+
+Should be something like this http://{USERNAME}:7200/repositories/{REPOSITORY_NAME}
+
+# 2. Run Nodejs server
+Replace the repository URL in `MovieQL>routes>sparql.js` 
+
+> npm install
+
+> npm start
+
+> localhost:3000
 
 # Acknowledgments
 
 [Front Page] design from Rachel Smith
 
 [WebSPARQL] José Carlos Ramalho
-
 
 
 [NodeJs]: <https://nodejs.org/en/>
